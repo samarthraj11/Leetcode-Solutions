@@ -1,0 +1,52 @@
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+
+        int n = nums.size();
+        bool ash = 0;
+        for(int i=1;i<n;i++)
+        {
+            if(nums[i] > nums[i-1])
+            {
+                ash = 1;
+            }
+        }
+
+        if(!ash)
+        {
+
+            sort(nums.begin(),nums.end());
+        }
+        else
+        {
+            int x;
+            for(int i=n-1;i>=0;i--)
+            {
+                if(nums[i] > nums[i-1])
+                {
+                    x = i-1;
+
+                    break;
+                }
+            }
+            int y = INT_MAX;
+            int idx;
+            for(int i=x+1;i<n;i++)
+            {
+                if(nums[i] > nums[x])
+                {
+                    y = min(y,nums[i]);
+                    if(y == nums[i])
+                    {
+                        idx = i;
+                    }
+                }
+            }
+            swap(nums[x],nums[idx]);
+            sort(nums.begin()+x+1,nums.end());
+            
+
+        }
+
+    }
+};
