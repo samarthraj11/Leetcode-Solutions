@@ -1,16 +1,15 @@
 class Solution {
 public:
-    vector<int> v[1000];
     
-    void dfs_adj(int x,vector<int> &vis)
+    
+    void dfs_adj(vector<int> v[],int x,vector<int> &vis)
     {
-        
         vis[x] = 1;
         for(int i:v[x])
         {
             if(!vis[i])
             {
-                dfs_adj(i,vis);
+                dfs_adj(v,i,vis);
             }
         }
         
@@ -20,7 +19,7 @@ public:
         
         
         int n = isConnected.size();
-        
+        vector<int> v[n];
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<n;j++)
@@ -32,7 +31,6 @@ public:
                 }
             }
         }
-        
         int cnt = 0;
         vector<int> vis(1000,0);
         for(int i=0;i<n;i++)
@@ -40,7 +38,7 @@ public:
             if(vis[i] == 0)
             {
                 cnt++;
-                dfs_adj(i,vis);
+                dfs_adj(v,i,vis);
             }
         }
         
