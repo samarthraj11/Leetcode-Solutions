@@ -1,0 +1,45 @@
+class Solution {
+public:
+    void dfs_island(vector<vector<char>>& v,int i, int j, int n, int m)
+    {
+        if(i < 0 || j < 0 || i > n-1 || j > m-1)
+        {
+            return ;
+        }
+        
+        if(v[i][j] != 'X')
+        {
+            return ;
+        }
+        
+        v[i][j] = 'y';
+        dfs_island(v,i,j+1,n,m);
+        dfs_island(v,i+1,j,n,m);
+        dfs_island(v,i-1,j,n,m);
+        dfs_island(v,i,j-1,n,m);
+    }
+    int countBattleships(vector<vector<char>>& board) {
+        
+        int n = board.size();
+        int m = board[0].size();
+        
+        int cnt = 0;
+        
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(board[i][j] == 'X')
+                {
+                    cnt++;
+                    dfs_island(board,i,j,n,m);
+                }
+            }
+        }
+        
+        return cnt;
+        
+        
+        
+    }
+};
