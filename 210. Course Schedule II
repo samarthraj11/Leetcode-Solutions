@@ -1,0 +1,87 @@
+class Solution {
+public:
+    
+    bool check_cycle(int cur,vector<int> v[],vector<int>& viss,vector<int>& dfs)
+    {
+        viss[cur] = 1;
+        dfs[cur] = 1;
+        for(auto i:v[cur])
+        {
+            if(viss[i] == 0)
+            {
+                if(check_cycle(i,v,viss,dfs))
+                {
+                    return true;
+                }
+            }
+            else if(dfs[i] == 1)
+            {
+                return true;
+            }
+        }
+        dfs[cur] = 0;
+        return false ;
+    }
+    
+    void dfs_adj(vector<int> v[],int cur,vector<int>& vis,stack<int>& st)
+    {
+        vis[cur] = 1;
+        for(auto it:v[cur])
+        {
+            if(vis[it] == 0)
+            {
+                dfs_adj(v,it,vis,st);
+            }
+        }
+        
+        st.push(cur);
+    }
+    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        
+        int n = numCourses;
+        vector<int> v[n];
+        stack<int> st;
+        vector<int> vis(n,0);
+        vector<int> viss(n,0);
+        
+        int a = 0;
+        vector<int> anss(0,0);
+        
+        
+        for(int i=0;i<prerequisites.size();i++)
+        {
+            v[prerequisites[i][1]].push_back(prerequisites[i][0]);
+        }
+        
+        vector<int> dfs(n,0);
+        for(int i=0;i<n;i++)
+        {
+            if(vis[i] == 0)
+            {
+                if(check_cycle(i,v,viss,dfs))
+                {
+                    return anss;
+                }
+            }
+        }
+        
+        for(int i=0;i<n;i++)
+        {
+            if(vis[i] == 0)
+            {
+                dfs_adj(v,i,vis,st);
+            }
+        }
+        vector<int> ans;
+        while(!st.empty())
+        {
+            ans.push_back(st.top());
+            st.pop();
+        }
+        
+        return ans;
+        
+        
+        
+    }
+};
