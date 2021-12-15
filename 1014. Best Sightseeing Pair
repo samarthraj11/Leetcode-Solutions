@@ -1,1 +1,34 @@
-Now it is an empty but after we will add the solution also.
+class Solution {
+public:
+    int maxScoreSightseeingPair(vector<int>& values) {
+        //this si the advances version of the best time to buoy and sell
+        //so this will ne done with dp only.
+        //therefore the dp implementation is simple and can be done with a single 
+        //1-D array and can be done also with a vecctpr too.
+        //always these types of implementation is hard but are easy to do.
+        //only thing we need in these types od question is to find a pattern and 
+        //rest will be done with help od the things we are previously familiar
+        //with second and most important thing that we need to do is completely
+        //start with a brute force approach and then we'll go on thinking that what
+        //are the things that we might have done better
+        
+        int n  = values.size();
+        
+        int maxi = values[0];
+        int ans = -1;
+        for(int i=1;i<n;i++)
+        {
+            ans = max(ans,maxi + values[i] - i);
+            maxi = max(maxi,values[i] + i);
+            
+        }
+        
+        return ans;
+        
+        
+        
+        
+
+        
+    }
+};
