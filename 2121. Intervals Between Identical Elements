@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<long long> getDistances(vector<int>& arr) {
+        unordered_map<long long, pair<long long,long long>> mp;
+        unordered_map<long long, pair<long long,long long>> cnt;
+        int n = arr.size();
+        
+        for(int i=0;i<n;i++)
+        {
+            mp[arr[i]].first += i;
+            mp[arr[i]].second++;
+        }
+        
+        vector<long long> v;
+        
+        for(int i=0;i<n;i++)
+        {
+            long long l = abs(cnt[arr[i]].first - (cnt[arr[i]].second*i));
+            long long rcnt = mp[arr[i]].second - cnt[arr[i]].second - 1;
+            long long ri = mp[arr[i]].first - cnt[arr[i]].first - i;
+            long long r = abs(ri - (rcnt)*i);
+            v.push_back(l+r);
+            cnt[arr[i]].first += i;
+            cnt[arr[i]].second++;
+        }
+        
+        return v;
+        
+    }
+};
