@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int smallestRepunitDivByK(int k) {
+        int n = k;
+        if(n%2==0 || n%5 == 0)
+        {
+            return -1;
+        }
+        long long x = 1;
+        int cnt = 1;
+        while(x%n != 0)
+        {
+            x = ((x*10)+1)%n;
+            cnt++;
+        }
+        
+        return cnt;
+        
+    }
+};
