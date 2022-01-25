@@ -1,0 +1,47 @@
+class Solution {
+public:
+    void dfs(int i,vector<int> v[],vector<int> &vis,int mark)
+    {
+        if(vis[i] != 0)
+        {
+            return ;
+        }
+        vis[i] = mark;
+        for(auto it:v[i])
+        {
+            if(vis[it] == 0)
+            {
+                dfs(it,v,vis,mark);
+            }
+        }
+        
+    }
+    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+        
+        vector<int> vis(n,0);
+        vector<int> v[n];
+        
+        for(int i=0;i<edges.size();i++)
+        {
+            int x = edges[i][0];
+            int y = edges[i][1];
+            v[x].push_back(y);
+            v[y].push_back(x);
+        }
+        
+        for(int i=0;i<n;i++)
+        {
+            if(vis[i] == 0)
+            {
+                dfs(i,v,vis,i+1);
+            }
+        }
+        
+        if(vis[source] == vis[destination])
+        {
+            return 1;
+        }
+        return 0;
+        
+    }
+};
