@@ -1,0 +1,44 @@
+class Solution {
+public:
+    vector<int> missingRolls(vector<int>& rolls, int mean, int n) {
+
+        int sum = 0;
+        for (int i = 0; i < rolls.size(); i++)
+        {
+            sum += rolls[i];
+        }
+        
+        // after the cross multiplication of the mean formula
+        int missing_sum = (mean*(n+rolls.size())) - sum;
+
+        if(missing_sum > n*6 || missing_sum < n)
+        {
+            return {};
+        }
+        int x = missing_sum/n;
+        vector<int> ans(n,x);
+        missing_sum = missing_sum - (x*n);
+
+        for (int i = 0; i < ans.size(); i++)
+        {
+            if(missing_sum)
+            {
+                ans[i]++;
+                missing_sum--;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        return ans;
+        
+
+
+        
+
+        
+        
+    }
+};
