@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+#define ll            long long
+#define pb            push_back
+#define ld            long double
+#define sz            size()
+#define foo(i,a,b)    for (ll i=a;i<b;i++)
+#define pll           pair<ll,ll>
+#define ed            "\n"
+#define ct            cout
+#define m_p           make_pair
+#define vi            vector<ll>
+#define vpll          vector<pll>
+#define ff            first
+#define ss            second
+#define mod           1000000007
+
+
+using namespace std;
+
+void bahut_tezz()
+{
+
+    std::ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    cout.tie(0);
+}
+/*--------------------------------------------------------------------------------------------------------------------------*/
+
+
+void jai_bajrangbali()
+{
+    ll n;
+    cin>>n;
+    ll a[n+1];
+    ll x,y,got;
+    for(ll i=2;i<=n;i++)
+    {
+        ct<<"? "<<1<< " "<<i<<endl;
+        cin>>got;
+        a[i] = got;
+    }
+    ct<<"? "<<2<< " "<<3<<endl;
+    cin>>got;
+    ll first = a[2] - ((a[2] + got - a[3])/2);
+    ct<< "! "<<first<< " ";
+    foo(i,2,n+1)
+    {
+        ct<<a[i] - first<<endl;
+    }
+
+
+}
+
+int main()
+{
+    bahut_tezz();
+    long long t=1;
+    //cin>>t;
+    while(t--)jai_bajrangbali();
+
+    return 0;
+}
